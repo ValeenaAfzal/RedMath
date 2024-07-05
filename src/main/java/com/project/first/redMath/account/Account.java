@@ -1,4 +1,4 @@
-package com.project.first.redMath.model;
+package com.project.first.redMath.account;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="account")
-public class Account{
+public class AccountModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int account_number;
@@ -19,6 +19,6 @@ public class Account{
     private String account_holder_name;
     @Column
     private Double balance;
-    @Column (name="created_at")
-    private LocalDateTime createdAt;
+    @Column
+    private LocalDateTime created_at;
 }
