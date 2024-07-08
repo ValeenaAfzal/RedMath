@@ -1,0 +1,128 @@
+openapi: 3.0.1
+info:
+  title: Account API
+  description: Account API Specification
+  version: 0.0.1
+servers:
+  - url: /
+paths:
+  /redMath/{id}:
+    get:
+      tags:
+        - account
+      parameters:
+        - name: account_number
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    put:
+      tags:
+        - account
+      parameters:
+        - name: account_number
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    delete:
+      tags:
+        - account
+      operationId: delete
+      parameters:
+        - name: account_number
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /redMath/:
+    get:
+      tags:
+        - account
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1000
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    post:
+      tags:
+        - account
+      operationId: post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+components:
+  schemas:
+    News:
+      type: object
+      properties:
+        newsId:
+          type: integer
+          format: int64
+        title:
+          type: string
+        details:
+          type: string
+        reportedBy:
+          type: string
+          format: date-time
+        reportedAt:
+          type: string
+          format: date-time
