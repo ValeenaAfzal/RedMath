@@ -2,6 +2,7 @@ package com.project.first.redMath.account;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -16,6 +17,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
+
     @GetMapping("/redMath/{id}")
     public ResponseEntity<Account> get(@PathVariable("id") int id) {
         Optional<Account> news = accountService.findById(id);
@@ -26,10 +28,12 @@ public class AccountController {
     }
 
     @GetMapping("/redMath/")
-    public ResponseEntity<List<Account>> get(@RequestParam(name = "page", defaultValue = "0") Integer page, @RequestParam(name = "page", defaultValue = "1000") Integer size) {
+    public ResponseEntity<List<Account>> get(@RequestParam(name = "page", defaultValue = "0") Integer page, @RequestParam(name = "size", defaultValue = "1000") Integer size) {
         return ResponseEntity.ok(accountService.findAll(page, size));
     }
 
+
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PostMapping("/redMath/")
     public ResponseEntity<Account> createAccount(@RequestBody Account account) {
         Account createdAccount = accountService.create(account);
@@ -40,6 +44,7 @@ public class AccountController {
         }
     }
 
+    @PreAuthorize("hasAnyAuthority('user')")
     @DeleteMapping("/redMath/{id}")
     public ResponseEntity<Void> deleteAccount(@PathVariable("id") int id) {
         Optional<Account> account = accountService.findById(id);

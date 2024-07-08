@@ -8,6 +8,8 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -27,9 +29,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http.formLogin(Customizer.withDefaults());
+//        http.authorizeHttpRequests(config -> config.anyRequest().authenticated());
+//        http.csrf(csrf -> csrf.disable());
+//        return http.build();
         http.formLogin(Customizer.withDefaults());
-        http.authorizeHttpRequests(config -> config.anyRequest().authenticated());
-        http.csrf(csrf -> csrf.disable());
+        http.authorizeHttpRequests(config -> config
+                .anyRequest().authenticated());
+        http.csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .sessionAuthenticationStrategy(new NullAuthenticatedSessionStrategy()));
         return http.build();
     }
 }
