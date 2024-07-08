@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-0.0.1
+      author: Valeena
+      changes:
+        - createTable:
+            tableName: account
+            columns:
+              - column:
+                  name: account_number
+                  type: int
+              - column:
+                  name: account_holder_name
+                  type: varchar(255)
+              - column:
+                  name: balance
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  name: updated_at
+                  type: DATETIME
+        - addPrimaryKey:
+            tableName: account
+            columnNames: account_number
+            constraintName: account_pk
+            autoIncrement: true
