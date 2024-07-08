@@ -1,23 +1,28 @@
-package com.project.first.redMath.user;
+package com.project.first.redMath.customer;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.security.PrivateKey;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity
-@Table
-public class user {
+@Entity(name="customer")
+public class customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
-    private  String FirstName;
+    private  String first_name;
     @Column
-    private String LastName;
+    private String last_name;
     @Column
-    private String Email;
+    private String email;
+    @Column
+    private String cnic;
+    @Column
+    private LocalDateTime created_at;
+    @Column
+    private LocalDateTime updated_at;
 }

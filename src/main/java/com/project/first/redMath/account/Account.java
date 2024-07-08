@@ -8,10 +8,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-
 @Entity
-@Table(name="account")
-public class AccountModel {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int account_number;
@@ -21,4 +19,6 @@ public class AccountModel {
     private Double balance;
     @Column
     private LocalDateTime created_at;
+    @Column
+    private LocalDateTime updated_at;
 }
