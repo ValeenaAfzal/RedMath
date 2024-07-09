@@ -4,5 +4,6 @@
 *.iws
 
 # Maven
-log/
-target/
+.mvn
+.log/
+.target/
