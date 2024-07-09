@@ -27,7 +27,6 @@ public class RestTempClient {
         System.out.println("Cached News Result:");
         newsList.forEach(n -> System.out.println(n.getDescription()));
         return newsList;
-        //return List.of(news);
     }
 
 }
