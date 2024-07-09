@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: schema-0.0.4
+      author: Valeena
+      changes:
+        - createTable:
+            tableName: transaction
+            columns:
+              - column:
+                  name: id
+                  type: int
+              - column:
+                  name: amount
+                  type: bigint
+              - column:
+                  name: from_account
+                  type: int
+              - column:
+                  name: to_bank
+                  type: varchar(50)
+              - column:
+                  name: transaction_date
+                  type: DATETIME
+              - column:
+                  name: updated_at
+                  type: DATETIME
+        - addPrimaryKey:
+            tableName: transaction
+            columnNames: id
+            constraintName: transaction_pk
+            autoIncrement: true
+        - addForeignKeyConstraint:
+            baseTableName: transaction
+            baseColumnNames: from_account
+            constraintName: account_fk
+            referencedTableName: account
+            referencedColumnNames: account_number
