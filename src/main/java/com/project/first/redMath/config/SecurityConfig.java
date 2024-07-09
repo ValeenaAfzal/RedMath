@@ -30,17 +30,15 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> {
             for (String location : ignored) {
-                web.ignoring().requestMatchers(AntPathRequestMatcher.antMatcher(location));
+                web.ignoring().requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.GET, location));
             }
         };
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http.formLogin(Customizer.withDefaults());
 //        http.authorizeHttpRequests(config -> config.anyRequest().authenticated());
 //        http.csrf(csrf -> csrf.disable());
-//        return http.build();
         http.formLogin(Customizer.withDefaults());
         http.authorizeHttpRequests(config -> config
                 .anyRequest().authenticated());
