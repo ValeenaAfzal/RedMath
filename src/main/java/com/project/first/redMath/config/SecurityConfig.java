@@ -1,5 +1,7 @@
 package com.project.first.redMath.config;
 
+import de.codecentric.boot.admin.server.config.AdminServerHazelcastAutoConfiguration;
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableAsync
 @EnableScheduling
+@EnableAdminServer
 //@EnableConfigurationProperties(value = { })
 @EnableMethodSecurity
 @Configuration

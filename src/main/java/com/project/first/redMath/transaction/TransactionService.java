@@ -35,7 +35,7 @@ public class TransactionService {
         return CompletableFuture.completedFuture(savedTransaction);
     }
 
-    @Scheduled(fixedRate = 6000)
+    @Scheduled(fixedRate = 600000)
     public void sendTransactionEmails() throws  Exception{
         System.out.println("Sending email for transaction: /n/n/n/n/n/n//n/n/n/n/n/n/");
         LocalDateTime oneMinuteAgo = LocalDateTime.now().minusMinutes(1);
